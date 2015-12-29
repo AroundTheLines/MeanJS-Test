@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var router = express.Router();
 var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comments');
+var Comment = mongoose.model('Comment');
 
 
 /* GET home page. */

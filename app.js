@@ -4,13 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/news');
+require('./models/Posts');
+require('./models/Comments');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var Post = require('./models/Posts');
-var Comment = require('./models/Comments');
+
 var app = express();
-mongoose.connect('mongodb://127.0.0.1:27017/news');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -25,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
