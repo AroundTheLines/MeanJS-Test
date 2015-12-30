@@ -21,16 +21,16 @@ router.param('post', function(req, res, next, id){
 });
 
 // Function automatically called for anything with :comment in it
-router.param('comment', function(req, res, next, id){
-	var query = Comment.findById(id);
+router.param('comment', function(req, res, next, id) {
+  var query = Comment.findById(id);
 
-	query.exec(function(err, comment){
-		if(err){ return next(err); }
-		if(!comment){ return next(new Error('Can\'t find comment')); }
+  query.exec(function (err, comment){
+    if (err) { return next(err); }
+    if (!comment) { return next(new Error("can't find comment")); }
 
-		req.comment = comment;
-		return next();
-	});
+    req.comment = comment;
+    return next();
+  });
 });
 
 /*********************** Actual Routes **************************/
